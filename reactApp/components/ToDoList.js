@@ -7,7 +7,7 @@ class ToDoList extends React.Component{
     super(props)
   }
   render(){
-    let toDos = this.props.todos.map((each) => (<ToDo task={each.taskText} complete = {each.completed}/>));
+    let toDos = this.props.todos.map((each, index) => (<ToDo task={each.taskText} complete = {each.completed} toggle = {() => this.props.toggleCross(index)} xClick={() => this.props.todoXClick(index)}/>));
     return(
       <ul>{toDos}</ul>
     );
