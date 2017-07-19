@@ -35,8 +35,7 @@ class ToDoList extends React.Component{
     super(props)
   }
   render(){
-    let toDos = dummyData.map((each) => (<ToDo task={each.taskText} complete = {each.completed}/>));
-    console.log(toDos);
+    let toDos = this.props.todos.map((each) => (<ToDo task={each.taskText} complete = {each.completed}/>));
     return(
       <ul>{toDos}</ul>
     );
@@ -46,12 +45,18 @@ class ToDoList extends React.Component{
 class ToDoApp extends React.Component{
   constructor(props){
     super(props)
+    this.state = {
+      todos: [],
+    }
+  }
+  componentDidMount(){
+    this.setState({todos: dummyData})
   }
   render(){
     return(
       <div>
         <InputLine />
-        <ToDoList />
+        <ToDoList todos = {this.state.todos}/>
       </div>
     )
   }
